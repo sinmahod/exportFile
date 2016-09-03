@@ -13,6 +13,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * @addtime 2015-07-03 13:27:30
+ * @author gl
+ */
 public class XMLUtil {
 
 	/**

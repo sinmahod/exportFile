@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * @addtime 2015-07-03 13:50:08
+ * @author gl
+ */
 public class FileUtil {
 
 	/**

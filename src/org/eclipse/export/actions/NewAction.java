@@ -29,6 +29,10 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
+/**
+ * @addtime 2015-07-03 13:21:30
+ * @author gl
+ */
 @SuppressWarnings("restriction")
 public class NewAction implements IWorkbenchWindowActionDelegate {
 	private IWorkbenchWindow window;

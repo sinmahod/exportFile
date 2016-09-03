@@ -5,6 +5,10 @@ import java.io.FilenameFilter;
 import java.util.Comparator;
 import java.util.regex.Pattern;
 
+/**
+ * @addtime 2015-07-03 13:31:31
+ * @author gl
+ */
 public class DirList {
 	public static String[] getFile(String dir , String regex) {
 		File path = new File(dir);
