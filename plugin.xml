@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Sample Action Set"
+            visible="true"
+            id="org.eclipse.export.actionSet">
+         <menu
+               id="NewMenu"
+               label="DTools">
+            <separator
+                  name="sampleGroup">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.export.actions.NewAction"
+               definitionId="org.eclipse.export"
+               icon="icons/icon400a8.png"
+               id="org.eclipse.export.actions.NewAction"
+               label="Export File"
+               menubarPath="NewMenu/sampleGroup"
+               retarget="false"
+               toolbarPath="sampleGroup"
+               tooltip="Export File">
+         </action>
+         <action
+               class="org.eclipse.export.actions.NewAction2"
+               definitionId="org.eclipse.open"
+               icon="icons/folderopen.gif"
+               id="org.eclipse.export.actions.NewAction2"
+               label="Open File"
+               menubarPath="NewMenu/sampleGroup"
+               retarget="false"
+               toolbarPath="sampleGroup"
+               tooltip="Open File">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+         <!--定义功能快捷键 Alt+E -->
+      <key  
+            commandId="org.eclipse.export"  
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"  
+            sequence="Alt+E">  
+      </key>
+         <!--定义功能快捷键 Alt+Q -->
+      <key
+            commandId="org.eclipse.open"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="Alt+Q">
+      </key>  
+   </extension>
+  <extension point="org.eclipse.ui.commands">  
+   		<command
+           category="org.eclipse.export.actions.run"
+           id="org.eclipse.export"
+           name="export">  
+   		</command>
+     <command
+           category="org.eclipse.export.actions.run"
+           id="org.eclipse.open"
+           name="open">
+     </command>  
+  </extension> 
+
+</plugin>
