@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * @addtime 2015-07-03 13:50:08
@@ -44,8 +45,14 @@ public class FileUtil {
 			File oldfile = new File(oldFile);
 			if (oldfile.exists()) { // 文件存在时
 				newFile = newFile.replaceAll("//", "\\\\");
-				newFile = newFile.replaceAll("/", "\\\\");
-				String newPath = newFile.substring(0,newFile.lastIndexOf("\\"));
+				String newPath = "";
+				if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
+					newPath = newFile.substring(0,newFile.lastIndexOf("/"));
+				}else{
+					newFile = newFile.replaceAll("/", "\\\\");
+					newPath = newFile.substring(0,newFile.lastIndexOf("\\"));
+				}
+				
 				
 				inStream = new FileInputStream(oldfile); // 读入原文件
 				if(!new File(newPath).exists()){

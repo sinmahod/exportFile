@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Export
 Bundle-SymbolicName: org.eclipse.export; singleton:=true
-Bundle-Version: 1.1.1.beta
+Bundle-Version: 1.2.1.for_MacOrWin
 Bundle-Activator: org.eclipse.export.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

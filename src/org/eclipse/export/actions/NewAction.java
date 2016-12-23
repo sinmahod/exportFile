@@ -152,7 +152,7 @@ public class NewAction implements IWorkbenchWindowActionDelegate {
 					if (!new File(exportPath + ir.getFullPath().toOSString())
 							.exists()) {
 						MessageDialog.openWarning(window.getShell(), "Warning",
-								"File not fount");
+								"File not fount(" + exportPath + ir.getFullPath().toOSString() + ")");
 					} else {
 						MessageDialog.openInformation(window.getShell(),
 								"Success", "File export success");
@@ -211,7 +211,7 @@ public class NewAction implements IWorkbenchWindowActionDelegate {
 					if (!new File(exportPath + path + ext + fname + ".class")
 							.exists()) {
 						MessageDialog.openWarning(window.getShell(), "Warning",
-								"The current editor file not found");
+								"The current editor file not found(" + exportPath + path + ext + fname + ".class)");
 					} else {
 						MessageDialog.openInformation(window.getShell(),
 								"Success",
@@ -224,7 +224,7 @@ public class NewAction implements IWorkbenchWindowActionDelegate {
 						+ fileName);
 				if (!new File(exportPath + fileName).exists()) {
 					MessageDialog.openWarning(window.getShell(), "Warning",
-							"The current editor file not found");
+							"The current editor file not found(" + exportPath + fileName + ")");
 				} else {
 					MessageDialog.openInformation(window.getShell(), "Success",
 							"Export success of the current edited file");

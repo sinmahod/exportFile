@@ -30,8 +30,8 @@ public class XMLUtil {
 		Map<String,String> xmlMap = new HashMap<String,String>();
 		
 		try {
-			FileInputStream in = new FileInputStream(new File(workspace + "\\"
-					+ project + "\\.classpath"));
+			FileInputStream in = new FileInputStream(new File(workspace + "/"
+					+ project + "/.classpath"));
 	
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setNamespaceAware(true);
