@@ -12,13 +12,13 @@ public class Test {
 //		String osName = props.getProperty("os.name"); 
 //		System.out.println(osName.equals("Mac OS X"));
 		//FileUtil.copyFile("/workspace/runtime-EclipseApplication/TestPlugin/bin/com/test/qqq/", "/workspace/ClassCode/TestPlugin/bin/com/test/qqq/","Test.class");
-		
-		try {
-			Runtime.getRuntime().exec("open -a finder /workspace/ClassCode/TestPlugin/bin/com/test/qqq/");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("TestPlugin/ui/ccc/dsaff.js".substring(0,"TestPlugin/ui/ccc/dsaff.js".lastIndexOf("/")+1));
+//		try {
+//			Runtime.getRuntime().exec("open -a finder /workspace/ClassCode/" + "TestPlugin/ui/ccc/dsaff.js".substring(0,"TestPlugin/ui/ccc/dsaff.js".lastIndexOf("／")+1));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 }

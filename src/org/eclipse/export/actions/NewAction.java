@@ -146,13 +146,15 @@ public class NewAction implements IWorkbenchWindowActionDelegate {
 				IResource ir = (IResource) element;
 				//判断文件类型为zhtml或jsp  此处可以自定义类型
 				if (isNotEmpty(ir.getFileExtension())
-						&& (ir.getFileExtension().equals("zhtml") || ir.getFileExtension().equals("jsp"))) {
-					FileUtil.copyFile(ir.getLocation().toOSString(), exportPath
-							+ ir.getFullPath().toOSString());
-					if (!new File(exportPath + ir.getFullPath().toOSString())
-							.exists()) {
+						&& (ir.getFileExtension().equals("zhtml") || ir.getFileExtension().equals("jsp")|| ir.getFileExtension().equals("js")|| ir.getFileExtension().equals("css"))) {
+					String newfilepath = exportPath + ir.getFullPath().toOSString();
+					if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
+						newfilepath = newfilepath.replaceAll("//", "/");
+					}
+					FileUtil.copyFile(ir.getLocation().toOSString(), newfilepath);
+					if (!new File(newfilepath).exists()) {
 						MessageDialog.openWarning(window.getShell(), "Warning",
-								"File not fount(" + exportPath + ir.getFullPath().toOSString() + ")");
+								"File not fount(" + ir.getLocation().toOSString() + ")TO(" + exportPath + ir.getFullPath().toOSString() + ")");
 					} else {
 						MessageDialog.openInformation(window.getShell(),
 								"Success", "File export success");
@@ -176,7 +178,7 @@ public class NewAction implements IWorkbenchWindowActionDelegate {
 			String fileName = part.getTitleToolTip();
 			if (isNotEmpty(fileName) && fileName.endsWith(".java")) {
 				String ext = "\\";
-				if (fileName.indexOf(ext) == -1) {
+				if (System.getProperties().getProperty("os.name").equals("Mac OS X") || fileName.indexOf(ext) == -1) {
 					ext = "/";
 				}
 				String projectName = fileName.substring(0,
@@ -220,7 +222,13 @@ public class NewAction implements IWorkbenchWindowActionDelegate {
 					return;
 				}
 			} else if (isNotEmpty(fileName)) {
-				FileUtil.copyFile(workspace + "\\" + fileName, exportPath
+				String filepath = "";
+				if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
+					filepath = workspace + "/" + fileName;
+				}else{
+					filepath = workspace + "\\" + fileName;
+				}
+				FileUtil.copyFile(filepath, exportPath
 						+ fileName);
 				if (!new File(exportPath + fileName).exists()) {
 					MessageDialog.openWarning(window.getShell(), "Warning",

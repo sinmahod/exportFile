@@ -13,7 +13,6 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.export.Activator;
 import org.eclipse.export.util.DirList;
-import org.eclipse.export.util.FileUtil;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.internal.ui.packageview.PackageFragmentRootContainer;
 import org.eclipse.jface.action.IAction;
@@ -101,7 +100,7 @@ public class NewAction2 implements IWorkbenchWindowActionDelegate {
 							} else {
 								try {
 									if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
-										Runtime.getRuntime().exec("open -a finder " + exportPath + projectName + "／" + path);
+										Runtime.getRuntime().exec("open -a finder " + exportPath + projectName + "/" + path);
 									}else{
 									 	String[] cmd = new String[5];  
 							            cmd[0] = "cmd";  
@@ -131,8 +130,12 @@ public class NewAction2 implements IWorkbenchWindowActionDelegate {
 			} else if (element instanceof IResource) {
 				IResource ir = (IResource) element;
 				if (isNotEmpty(ir.getFileExtension())
-						&& (ir.getFileExtension().equals("zhtml") || ir.getFileExtension().equals("jsp"))) {
-					if (!new File(exportPath + ir.getFullPath().toOSString())
+						&& (ir.getFileExtension().equals("zhtml") || ir.getFileExtension().equals("jsp")|| ir.getFileExtension().equals("js")|| ir.getFileExtension().equals("css"))) {
+					String newfilepath = exportPath + ir.getFullPath().toOSString();
+					if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
+						newfilepath = newfilepath.replaceAll("//", "/");
+					}
+					if (!new File(newfilepath)
 							.exists()) {
 						MessageDialog.openWarning(window.getShell(), "Warning",
 								"File not fount");
@@ -141,7 +144,7 @@ public class NewAction2 implements IWorkbenchWindowActionDelegate {
 						
 						try {
 							if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
-								Runtime.getRuntime().exec("open -a finder " + exportPath + str.substring(0,str.lastIndexOf("／")+1));
+								Runtime.getRuntime().exec("open -a finder " + exportPath + str.substring(0,str.lastIndexOf("/")+1));
 							}else{
 								String dir = exportPath + str.substring(0,str.lastIndexOf("\\")+1);
 								String[] cmd = new String[5];  
@@ -234,15 +237,29 @@ public class NewAction2 implements IWorkbenchWindowActionDelegate {
 					}
 					return;
 				}
-			} else if (isNotEmpty(fileName)) {
-				FileUtil.copyFile(workspace + "\\" + fileName, exportPath
-						+ fileName);
+			} else if (isNotEmpty(exportPath + fileName)) {
 				if (!new File(exportPath + fileName).exists()) {
 					MessageDialog.openWarning(window.getShell(), "Warning",
 							"The current editor file not found(" + exportPath + fileName + ")");
 				} else {
-					MessageDialog.openInformation(window.getShell(), "Success",
-							"Export success of the current edited file");
+					try {
+						if(System.getProperties().getProperty("os.name").equals("Mac OS X")){
+							Runtime.getRuntime().exec("open -a finder " + exportPath + fileName.substring(0,fileName.lastIndexOf("/")+1));
+						}else{
+							String dir = exportPath + fileName.substring(0,fileName.lastIndexOf("\\")+1);
+							String[] cmd = new String[5];  
+				            cmd[0] = "cmd";  
+				            cmd[1] = "/c";  
+				            cmd[2] = "start";  
+				            cmd[3] = " ";  
+				            cmd[4] = dir;  
+							Runtime.getRuntime().exec(cmd);
+						}
+					 	
+					} catch (IOException e) {
+						MessageDialog.openError(window.getShell(),
+								"Warning", "Error");
+					}  
 				}
 			} else {
 				MessageDialog.openWarning(window.getShell(), "Warning",
